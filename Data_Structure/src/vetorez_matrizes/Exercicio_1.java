@@ -1,4 +1,4 @@
-package ex_1;
+package vetorez_matrizes;
 
 public class Exercicio_1 {
 

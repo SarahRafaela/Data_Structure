@@ -87,46 +87,45 @@ public class LinkedList {
 			}
 			current.setNext(null);
 			tail = current;
-			
+
 		}
 
 		size--;
 		return removedElement;
 	}
-	//Exercicio 7
+
+	// Exercicio 7
 	public Node removeFirst(int position) throws UnderflowException {
 		if (isEmpty()) {
 			throw new UnderflowException();
 		}
-		Node removedElement ;
-	
+		Node removedElement;
+
 		if (position <= size) {
 			Node current = head;
 			Node before = null;
 			int i = 0;
-			while (i > position ) {
-				
-			before = current;
-			current = current.getNext();
-			i++;
-			
-		}
-		
-			if(current != null)
-			{
+			while (i > position) {
+
+				before = current;
+				current = current.getNext();
+				i++;
+
+			}
+
+			if (current != null) {
 				before.setNext(current.getNext());
 			}
-			if(current == tail)
-			{
+			if (current == tail) {
 				current = before;
 			}
-				
+
 			removedElement = current;
 		} else {
 			throw new UnderflowException();
 		}
 		size--;
-		return removedElement ;
+		return removedElement;
 	}
 
 }

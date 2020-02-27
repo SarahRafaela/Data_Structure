@@ -102,18 +102,31 @@ public class LinkedList {
 	
 		if (position <= size) {
 			Node current = head;
+			Node before = null;
 			int i = 0;
-			while (i != position ) {
-				current = current.getNext();
-				i++;
+			while (i > position ) {
+				
+			before = current;
+			current = current.getNext();
+			i++;
+			
+		}
+		
+			if(current != null)
+			{
+				before.setNext(current.getNext());
 			}
-			
-			
+			if(current == tail)
+			{
+				current = before;
+			}
+				
+			removedElement = current;
 		} else {
 			throw new UnderflowException();
 		}
 		size--;
-		return removedElement;
+		return removedElement ;
 	}
 
 }

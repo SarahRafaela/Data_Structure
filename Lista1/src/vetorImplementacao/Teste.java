@@ -12,7 +12,7 @@ public class Teste {
 	
 	vetor.add(aluno1);
 	vetor.add(aluno2);
-	vetor.add(aluno2);
+	vetor.add(aluno3);
 	
 	int tamanho = vetor.size();
 	

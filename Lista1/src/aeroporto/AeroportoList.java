@@ -1,11 +1,13 @@
-package listaDupla;
+package aeroporto;
 
-public class ListaDuplamenteEncadeada {
-	protected DNode head;
-	protected DNode tail;
+
+
+public class AeroportoList {
+	protected Aeroporto  head;
+	protected Aeroporto  tail;
 	protected long size;
 
-	public ListaDuplamenteEncadeada() {
+	public AeroportoList() {
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
@@ -16,41 +18,42 @@ public class ListaDuplamenteEncadeada {
 		return head == null;
 	}
 
-	public void addInicio(DNode novoNo) {
-
-		if (isEmpty()) {
-			tail = head = novoNo;
-			size++;
-		} else {
-			novoNo.setProx(head);
-			head.setAnt(novoNo);
-			head = novoNo;
-			size++;
+	// Adicionar um dado elemento no inicio da Lista.
+	public void addInicio(Aeroporto novoAeroporto) {
+		novoAeroporto .setProx(head);
+		head = novoAeroporto ;
+		size++;
+		if (size == 1) {
+			tail = head;
 		}
 
 	}
 
 	// Adicionar um dado elemento no fim da Lista.
-	public void addFim(DNode novoNo) {
+	public void addFim(Aeroporto novoAeroporto) {
 		if (isEmpty()) {
-			addInicio(novoNo);
+			addInicio(novoAeroporto );
 		} else {
-			tail.setProx(novoNo);
-			novoNo.setAnt(tail);
-			novoNo.setProx(null);
-			tail = novoNo;
+
+			novoAeroporto .setProx(null);
+			// o penultimo é o ultimo atual
+			tail.setProx(novoAeroporto );
+			// o ultimo vira o novo Nó
+			tail = novoAeroporto ;
 			size++;
 		}
 	}
 
 	// Adicionar um dado elemento em uma dada posição.
 
-	public void addPosicao(DNode novoNo, int posicao) {
+	public void addPosicao(Aeroporto  novoNo, int posicao) {
 		if (posicao == 0) {
 			addInicio(novoNo);
+		} else if (isEmpty()) {
+			addInicio(novoNo);
 		} else {
-			DNode atual = head;
-			DNode anterior = null;
+			Aeroporto  atual = head;
+			Aeroporto  anterior = null;
 			int i = 0;
 
 			if (posicao <= size) {
@@ -59,11 +62,8 @@ public class ListaDuplamenteEncadeada {
 					atual = atual.getProx();
 					i++;
 				}
-
 				anterior.setProx(novoNo);
 				novoNo.setProx(atual);
-				novoNo.setAnt(anterior);
-				atual.setAnt(novoNo);
 
 				size++;
 			}
@@ -71,7 +71,7 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Pegar o elemento da primeira posição.
-	public DNode getPrimeiro() throws UnderflowException {
+	public Aeroporto  getPrimeiro() throws UnderflowException {
 
 		if (isEmpty()) {
 			throw new UnderflowException();
@@ -81,7 +81,7 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Pegar o elemento da ultima posição.
-	public DNode getUltimo() throws UnderflowException {
+	public Aeroporto  getUltimo() throws UnderflowException {
 		if (isEmpty()) {
 			throw new UnderflowException();
 
@@ -90,8 +90,8 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Pegar o elemento de uma determinada posição.
-	public DNode getPosicao(int posicao) throws UnderflowException {
-		DNode atual = head;
+	public Aeroporto  getPosicao(int posicao) throws UnderflowException {
+		Aeroporto  atual = head;
 		if (isEmpty()) {
 			throw new UnderflowException();
 
@@ -114,80 +114,73 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Adicionar um dado elemento no inicio da Lista.
-	public DNode removeInicio() throws UnderflowException {
+	public Aeroporto  removeInicio() throws UnderflowException {
 
 		if (isEmpty()) {
 			throw new UnderflowException();
 		}
-		DNode removedItem = head;
+		Aeroporto  removedItem = head;
 		if (head == tail) {
 			head = tail = null;
 		} else {
-			head.getProx().setAnt(null);
 			head = head.getProx();
 		}
 		size--;
-		if (isEmpty()) {
-			throw new UnderflowException();
-		}
-
 		return removedItem;
 	}
 
 	// Adicionar um dado elemento no fim da Lista.
-	public DNode removeFim() throws UnderflowException {
+	public Aeroporto  removeFim() throws UnderflowException {
 
 		if (isEmpty()) {
 			throw new UnderflowException();
 		}
-		DNode removedItem = tail;
+		Aeroporto  removedItem = tail;
 		if (head == tail) {
 			head = tail = null;
 		} else {
-			tail.getAnt().setProx(null);
-			tail = tail.getAnt();
+			Aeroporto  atual = head;
+			while (atual.getProx() != tail) {
+				atual = atual.getProx();
+			}
+			tail = atual;
+			atual.setProx(null);
 		}
 		size--;
 		return removedItem;
 	}
 
 	// Remover o elemento de uma determinada posição.
-	public DNode removePosicao(int posicao) throws UnderflowException {
+	public Aeroporto  removePosicao(int posicao) throws UnderflowException {
 		if (isEmpty()) {
 			throw new UnderflowException();
 		}
-		DNode atual = head;
-		DNode anterior = null;
+		Aeroporto  atual = head;
 		if (posicao <= size) {
 			if (posicao == 0) {
 				removeInicio();
 			}
 			int i = 0;
 			while (i != posicao) {
-				anterior = atual;
 				atual = atual.getProx();
 				i++;
 			}
-			anterior.setProx(atual.getProx());
-			atual.getProx().setAnt(anterior);
-
+			Aeroporto  removedItem = atual;
 		}
 
-		size--;
-		DNode removedItem = atual;
-		return removedItem;
+		return atual;
 
 	}
 
 	// Verificar se um elemento está armazenado.
-	public boolean contemElemento(int element) {
-		DNode atual = head;
+	public boolean contemSigla(Object element) {
+		Aeroporto  atual = head;
 
 		while (atual != null) {
 
 			atual = atual.getProx();
 
-			if (atual.getElement() == element) {
+			if (atual.getSigla().equals(element)) {
 				return true;
 			}
 		}
@@ -196,8 +189,8 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Informar o número de elementos armazenados.
-	public String RetornaTamanho() {
-		return " " + size;
+	public long RetornaTamanho() {
+		return size;
 	}
 
 	// Mostra lista
@@ -205,16 +198,15 @@ public class ListaDuplamenteEncadeada {
 		if (isEmpty()) {
 			System.out.println("Lista Vazia");
 		} else {
-			System.out.println("A lista é: ");
-			DNode atual = head;
-			long i = 0;
-			while (i != size) {
-				System.out.print(atual.getElement() + " ");
+			System.out.println("A lista de Aeroportos fechados é: ");
+			Aeroporto  atual = head;
+			while (atual != null) {
+				System.out.println(atual.getSigla().toString() + "  ");
 				atual = atual.getProx();
-				i++;
 			}
 			System.out.println("\n");
 
 		}
 	}
 }
+

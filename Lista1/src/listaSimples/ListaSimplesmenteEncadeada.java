@@ -110,7 +110,7 @@ public class ListaSimplesmenteEncadeada {
 
 		return atual;
 	}
-
+	
 	// Adicionar um dado elemento no inicio da Lista.
 	public Node removeInicio() throws UnderflowException {
 

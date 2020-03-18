@@ -10,11 +10,20 @@ public class Aluno {
 	private float notaP2;
 	private float notaSub;
 	private float notaEx;
-	private Aluno prox;
-	
+	private Aluno anterior;
 	
 	public Aluno(String nome, String numeroDeMatricula, String disciplina, float notaP1, float notaP2, float notaSub,
-			float notaEx, Aluno prox) {
+			float notaEx) {
+		this.nome = nome;
+		this.numeroDeMatricula = numeroDeMatricula;
+		this.disciplina = disciplina;
+		this.notaP1 = notaP1;
+		this.notaP2 = notaP2;
+		this.notaSub = notaSub;
+		this.notaEx = notaEx;
+	}
+	public Aluno(String nome, String numeroDeMatricula, String disciplina, float notaP1, float notaP2, float notaSub,
+			float notaEx, Aluno anterior) {
 		
 		this.nome = nome;
 		this.numeroDeMatricula = numeroDeMatricula;
@@ -23,7 +32,7 @@ public class Aluno {
 		this.notaP2 = notaP2;
 		this.notaSub = notaSub;
 		this.notaEx = notaEx;
-		this.prox = prox;
+		this.anterior = anterior;
 	}
 	
 	public Aluno() {
@@ -86,12 +95,12 @@ public class Aluno {
 		this.notaEx = notaEx;
 	}
 
-	public Aluno getProx() {
-		return prox;
+	public Aluno getAnterior() {
+		return anterior;
 	}
 
-	public void setProx(Aluno prox) {
-		this.prox = prox;
+	public void setAnterior(Aluno anterior) {
+		this.anterior = anterior;
 	}
 
 	

@@ -1,5 +1,7 @@
 package listaCircularSimples;
 
-public class UnderflowException {
-
+public class UnderflowException extends Exception {
+	public String toString(){
+		return "UNDERFLOW!";
+	}
 }

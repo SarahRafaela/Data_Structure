@@ -17,7 +17,8 @@ public class Node {
 		this.elemento = e;
 		this.prox = p;
 	}
-
+	
+	
 	public String getElemento() {
 		return elemento;
 	}

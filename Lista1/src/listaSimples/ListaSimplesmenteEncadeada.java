@@ -43,22 +43,26 @@ public class ListaSimplesmenteEncadeada {
 	}
 
 	// Adicionar um dado elemento em uma dada posição.
+
 	public void addPosicao(Node novoNo, int posicao) {
-		if (isEmpty()) {
+		if (posicao == 0) {
+			addInicio(novoNo);
+		} else if (isEmpty()) {
 			addInicio(novoNo);
 		} else {
 			Node atual = head;
 			Node anterior = null;
-			int i = -1;
+			int i = 0;
+
 			if (posicao <= size) {
-				while (i <= posicao) {
+				while (i != posicao) {
 					anterior = atual;
 					atual = atual.getProx();
 					i++;
 				}
 				anterior.setProx(novoNo);
-				novoNo.setProx(atual.getProx());
-				atual = novoNo;
+				novoNo.setProx(atual);
+
 				size++;
 			}
 		}
@@ -92,8 +96,12 @@ public class ListaSimplesmenteEncadeada {
 		} else {
 
 			if (posicao <= size) {
-				int i = -1;
-				while (i <= posicao) {
+				if (posicao == 0) {
+					return head;
+				}
+				int i = 0;
+
+				while (i != posicao) {
 					atual = atual.getProx();
 					i++;
 				}
@@ -104,7 +112,7 @@ public class ListaSimplesmenteEncadeada {
 	}
 
 	// Adicionar um dado elemento no inicio da Lista.
-	public Node RemoveInicio() throws UnderflowException {
+	public Node removeInicio() throws UnderflowException {
 
 		if (isEmpty()) {
 			throw new UnderflowException();
@@ -120,7 +128,7 @@ public class ListaSimplesmenteEncadeada {
 	}
 
 	// Adicionar um dado elemento no fim da Lista.
-	public Node RemoveFim() throws UnderflowException {
+	public Node removeFim() throws UnderflowException {
 
 		if (isEmpty()) {
 			throw new UnderflowException();
@@ -141,8 +149,26 @@ public class ListaSimplesmenteEncadeada {
 	}
 
 	// Remover o elemento de uma determinada posição.
-	public Node RemovePosicao(int posicao) {
-		return null;
+	public Node removePosicao(int posicao) throws UnderflowException {
+		if (isEmpty()) {
+			throw new UnderflowException();
+		}
+		Node atual = head;
+		if (posicao <= size) {
+			if (posicao == 0) {
+				removeInicio();
+			}
+			int i = 0;
+			while (i != posicao) {
+				atual = atual.getProx();
+				i++;
+			}
+			size--;
+			Node removedItem = atual;
+		}
+
+		return atual;
+
 	}
 
 	// Verificar se um elemento está armazenado.

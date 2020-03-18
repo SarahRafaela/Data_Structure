@@ -1,7 +1,5 @@
 package listaDupla;
 
-import listaSimples.Node;
-import listaSimples.UnderflowException;
 
 public class ListaDuplamenteEncadeada {
 	protected DNode head;
@@ -19,28 +17,29 @@ public class ListaDuplamenteEncadeada {
 		return head == null;
 	}
 
-	public void addInicio(DNode novoNode) {
+	public void addInicio(DNode novoNo) {
 
 		if (isEmpty()) {
-			tail = head = novoNode;
+			tail = head = novoNo;
 			size++;
 		} else {
-			novoNode.setProx(head);
-			head.setProx(novoNode);
-			head = novoNode;
+			novoNo.setProx(head);
+			head.setAnt(novoNo);
+			head = novoNo;
 			size++;
 		}
 
 	}
 
 	// Adicionar um dado elemento no fim da Lista.
-	public void addFim(DNode novoNode) {
+	public void addFim(DNode novoNo) {
 		if (isEmpty()) {
-			addInicio(novoNode);
+			addInicio(novoNo);
 		} else {
-			tail.setProx(novoNode);
-			novoNode.setAnt(tail);
-			novoNode.setProx(null);
+			tail.setProx(novoNo);
+			novoNo.setAnt(tail);
+			novoNo.setProx(null);
+			tail = novoNo;
 			size++;
 		}
 	}
@@ -146,8 +145,8 @@ public class ListaDuplamenteEncadeada {
 		if (head == tail) {
 			head = tail = null;
 		} else {
-			tail.getAnt().setProx(null);
-			tail = tail.getAnt();
+		tail.getAnt().setProx(null);
+		tail = tail.getAnt();
 		}
 		size--;
 		return removedItem;
@@ -198,8 +197,8 @@ public class ListaDuplamenteEncadeada {
 	}
 
 	// Informar o número de elementos armazenados.
-	public long RetornaTamanho() {
-		return size;
+	public String RetornaTamanho() {
+		return " "+ size;
 	}
 
 	// Mostra lista
@@ -209,9 +208,11 @@ public class ListaDuplamenteEncadeada {
 		} else {
 			System.out.println("A lista é: ");
 			DNode atual = head;
-			while (atual != null) {
-				System.out.print( Integer.toString(atual.getElement()) + " ");
+			long i = 0;
+			while (i != size) {
+				System.out.print(atual.getElement() + " ");
 				atual = atual.getProx();
+				i++;
 			}
 			System.out.println("\n");
 

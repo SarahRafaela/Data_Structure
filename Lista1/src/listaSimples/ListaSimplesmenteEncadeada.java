@@ -163,7 +163,6 @@ public class ListaSimplesmenteEncadeada {
 				atual = atual.getProx();
 				i++;
 			}
-			size--;
 			Node removedItem = atual;
 		}
 

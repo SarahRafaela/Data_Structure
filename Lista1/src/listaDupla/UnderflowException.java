@@ -1,6 +1,6 @@
 package listaDupla;
 
-public class UnderflowException extends Exception {
+public class UnderflowException  extends Exception {
 	
 	public String toString()
 	{

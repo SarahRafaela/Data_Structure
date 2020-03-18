@@ -11,7 +11,7 @@ public class Principal {
 			lista.addFim(new Node("E"));
 			lista.addPosicao(new Node("L"), 0);
 			System.out.println("Retorna o quarto elemento" + lista.getPosicao(3).getElemento());
-			lista.RemoveFim();
+			lista.removeFim();
 		} catch (UnderflowException e) {
 			System.out.println("Impossível remover!");
 			e.printStackTrace();
